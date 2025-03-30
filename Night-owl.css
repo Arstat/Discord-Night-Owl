@@ -1,0 +1,413 @@
+/**
+ * @name midnight (night owl) - Updated for new UI
+ * @description A dark, rounded discord theme based on the Night Owl VSCode theme. Updated for Discord's new UI.
+ * @author refact0r, dragonfleas (updated by relax)
+ * @version 3.0.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/midnight-discord
+ * @source https://github.com/refact0r/midnight-discord/blob/master/flavors/midnight-night-owl.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* IMPORTANT: make sure to enable dark mode in discord settings for the theme to apply properly!!! */
+
+/* import theme modules */
+@import url('https://refact0r.github.io/midnight-discord/build/midnight.css');
+
+/* Import Figtree font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=figtree@400,600&display=swap');
+
+body {
+  /* font, change to '' for default discord font */
+  --font: 'Poppins', sans-serif;
+
+  /* sizes */
+  --gap: 7px; /* spacing between panels */
+  --divider-thickness: 3px; /* thickness of unread messages divider and highlighted message borders */
+
+  /* animation/transition options */
+  --animations: on; /* turn off to disable all midnight animations/transitions */
+  --list-item-transition: 0.2s ease; /* transition for list items */
+  --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+
+  /* top bar options - updated for new UI */
+  --move-top-bar-buttons: on; /* turn on to move inbox button to the server list */
+  --custom-app-top-bar-height: 28px; /* height of the titlebar/top bar (adjusted for new UI) */
+
+  /* window controls */
+  --custom-window-controls: on; /* turn off to use discord default window controls */
+  --window-control-size: 14px; /* size of custom window controls */
+
+  /* dms button icon options */
+  --dms-icon: on; /* set to default to use discord icon, on to use custom icon, off to disable completely */
+  --dms-icon-svg-url: url('https://upload.wikimedia.org/wikipedia/commons/5/51/Owl_-_Lorc_-_game-icons.svg'); /* Using owl icon from original theme */
+  --dms-icon-svg-size: auto; /* size of the svg (css mask-size) */
+  --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+  --dms-icon-color-after: var(
+    --white
+  ); /* icon color when button is hovered/selected */
+
+  /* dms button background options */
+  --dms-background: off; /* off to disable, image to use a background image, color to use a custom color/gradient */
+  --dms-background-image-url: url(''); /* url of the background image */
+  --dms-background-image-size: cover; /* size of the background image (css background-size) */
+  --dms-background-color: linear-gradient(
+    70deg,
+    var(--blue-2),
+    var(--purple-2),
+    var(--red-2)
+  ); /* fixed color/gradient (css background) */
+
+  /* background image options */
+  --background-image: off; /* turn on to use a background image */
+  --background-image-url: url(''); /* url of the background image */
+
+  /* transparency/blur options */
+  /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+  --transparency-tweaks: off; /* turn on to remove some elements for better transparency */
+  --remove-bg-layer: off; /* turn on to remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+  --panel-blur: off; /* turn on to blur the background of panels */
+  --blur-amount: 12px; /* amount of blur */
+  --bg-floating: var(
+    --bg-3
+  ); /* you can set this to a more opaque color if floating panels look too transparent */
+
+  /* chatbar options - added from newer version */
+  --flipped-chatbar: on; /* turn on to move the typing indicator above the chatbar */
+  --chatbar-height: 47px; /* height of the chatbar (52px by default, 47px to align it with the user panel) */
+  --chatbar-padding: 8px; /* padding of the chatbar */
+
+  /* other options */
+  --small-user-panel: on; /* turn on to make the user panel smaller like in old discord */
+}
+
+/* color options */
+:root {
+  --colors: on; /* turn off to use discord default colors */
+
+  /* text colors - preserving Night Owl theme colors */
+  --text-0: white; /* text on colored elements */
+  --text-1: var(--text-2); /* other normally white text */
+  --text-2: hsl(217, 34%, 85%); /* headings and important text */
+  --text-3: hsl(217, 34%, 82%); /* normal text */
+  --text-4: hsl(217, 34%, 40%); /* icon buttons and channels */
+  --text-5: hsl(217, 30%, 32%); /* muted channels/chats and timestamps */
+
+  /* background and dark colors */
+  --bg-1: hsl(207, 95%, 10%); /* dark buttons when clicked */
+  --bg-2: hsl(207, 95%, 8%); /* dark buttons */
+  --bg-3: hsl(207, 95%, 5%); /* spacing, secondary elements */
+  --bg-4: hsl(207, 95%, 8%); /* main background color */
+  --hover: hsla(207, 95%, 20%, 0.1); /* channels and buttons when hovered */
+  --active: hsla(
+    207,
+    95%,
+    25%,
+    0.2
+  ); /* channels and buttons when clicked or selected */
+  --active-2: hsla(
+    207,
+    95%,
+    30%,
+    0.3
+  ); /* extra state for transparent buttons - added from newer version */
+  --message-hover: hsla(207, 0%, 0%, 0.1); /* messages when hovered */
+
+  /* accent colors */
+  --accent-1: hsl(221, 100%, 75%); /* links */
+  --accent-2: #17f558; /* general unread/mention elements */
+  --accent-3: hsl(276, 68%, 45%); /* accent buttons */
+  --accent-4: hsl(276, 68%, 40%); /* accent buttons when hovered */
+  --accent-5: hsl(276, 68%, 35%); /* accent buttons when clicked */
+  --accent-new: var(
+    --accent-2
+  ); /* stuff that's normally red like mute/deafen buttons - added from newer version */
+  --mention: hsla(207, 95%, 50%, 0.05); /* mentions & mention messages */
+  --mention-hover: hsla(
+    207,
+    95%,
+    50%,
+    0.1
+  ); /* mentions & mention messages when hovered */
+  --reply: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 90%) 40%,
+    transparent
+  ); /* background of messages that reply to you */
+  --reply-hover: linear-gradient(
+    to right,
+    color-mix(in hsl, var(--text-3), transparent 95%) 40%,
+    transparent
+  ); /* background of messages that reply to you when hovered */
+
+  /* status indicator colors */
+  --online: var(--online-indicator); /* online status */
+  --dnd: var(--dnd-indicator); /* do not disturb status */
+  --idle: var(--idle-indicator); /* idle status */
+  --streaming: var(--streaming-indicator); /* streaming status */
+  --offline: var(--text-4); /* offline status */
+
+  /* status indicators - preserving Night Owl custom status colors */
+  --online-indicator: var(--accent-2); /* green status (using accent-2) */
+  --dnd-indicator: hsl(0, 100%, 69%); /* bright red status */
+  --idle-indicator: hsl(180, 9%, 43%); /* muted turquoise status */
+  --streaming-indicator: hsl(260, 60%, 60%); /* purple status */
+
+  /* border colors */
+  --border-light: hsla(207, 95%, 25%, 0.1); /* light border color */
+  --border: hsla(207, 95%, 25%, 0.2); /* normal border color */
+  --button-border: hsla(
+    207,
+    95%,
+    25%,
+    0.1
+  ); /* neutral border color of buttons */
+
+  /* base colors */
+  --red-1: oklch(76% 0.12 0);
+  --red-2: oklch(70% 0.12 0);
+  --red-3: oklch(64% 0.12 0);
+  --red-4: oklch(58% 0.12 0);
+  --red-5: oklch(52% 0.12 0);
+
+  --green-1: oklch(76% 0.11 170);
+  --green-2: oklch(70% 0.11 170);
+  --green-3: oklch(64% 0.11 170);
+  --green-4: oklch(58% 0.11 170);
+  --green-5: oklch(52% 0.11 160);
+
+  --blue-1: oklch(76% 0.1 215);
+  --blue-2: oklch(70% 0.1 215);
+  --blue-3: oklch(64% 0.1 215);
+  --blue-4: oklch(58% 0.1 215);
+  --blue-5: oklch(52% 0.1 215);
+
+  --yellow-1: oklch(80% 0.11 90);
+  --yellow-2: oklch(74% 0.11 90);
+  --yellow-3: oklch(68% 0.11 90);
+  --yellow-4: oklch(62% 0.11 90);
+  --yellow-5: oklch(56% 0.11 90);
+
+  --purple-1: oklch(76% 0.11 310);
+  --purple-2: oklch(70% 0.11 310);
+  --purple-3: oklch(64% 0.11 310);
+  --purple-4: oklch(58% 0.11 310);
+  --purple-5: oklch(52% 0.11 310);
+}
+
+/* New UI specific adjustments */
+:root {
+  /* Forum view fixes */
+  --forum-thread-spacing: 16px;
+  --forum-tag-border-radius: 12px;
+
+  /* New UI rounded corners and paddings */
+  --channel-radius: 10px; /* Using the original --roundness-xs value */
+  --message-radius: 16px; /* Using the original --roundness-m value */
+  --button-radius: 10px; /* Using the original --roundness-xs value */
+  --avatar-radius: 50%;
+  --panel-radius: 22px; /* Using the original --roundness-xl value */
+
+  /* New UI scrollbar */
+  --scrollbar-width: 8px;
+  --scrollbar-radius: 4px;
+
+  /* New UI elements - channel and server sidebar width */
+  --channel-sidebar-width: 260px;
+  --server-sidebar-width: 72px;
+
+  /* Chat padding */
+  --message-padding: 16px;
+  --chat-padding: 16px;
+}
+
+/* Fix for new Discord UI components */
+.container-1NXEkR, /* Server list container */
+.sidebar-1tnWFu, /* Channel list container */
+.chat-2ZfjoI, /* Chat area */
+.container-2o3qEW, /* Members list container */
+.membersWrap-3NUR2t, /* Members wrap */
+.searchResultsWrap-5RVOkx, /* Search results */
+.pageWrapper-2PwDoS /* Settings pages */ {
+  border-radius: var(--panel-radius);
+  margin: calc(var(--gap) / 2);
+}
+
+/* Adjust main container for new UI layout */
+.app-2CXKsg {
+  background-color: var(--bg-3);
+}
+
+/* Discord's new UI has completely redesigned messages */
+.message-2CShn3 {
+  border-radius: var(--message-radius);
+  padding: var(--message-padding);
+  margin: 4px 0;
+}
+
+/* Fix for new UI buttons */
+.button-ejjZWC {
+  border-radius: var(--button-radius);
+}
+
+/* Fix for new UI avatars */
+.avatar-b5OQ1N,
+.avatar-2e8lTP,
+.avatar-3QF_VA {
+  border-radius: var(--avatar-radius);
+}
+
+/* Custom scrollbar for new UI */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--scrollbar-radius) !important;
+  background-color: var(--bg-1) !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* Fix for server folders in new UI */
+.folder-241Joy {
+  background-color: var(--bg-2);
+  border-radius: var(--panel-radius);
+}
+
+/* Fix user panel for new UI */
+.panels-3wFtMD {
+  background-color: var(--bg-2);
+  border-radius: var(--panel-radius) var(--panel-radius) 0 0;
+  margin-bottom: calc(var(--gap) / 2);
+}
+
+/* Fix chatbar for new UI */
+.channelTextArea-1VQBuV {
+  border-radius: var(--panel-radius);
+  margin: calc(var(--gap) / 2);
+  background-color: var(--bg-2);
+}
+
+/* Fix typing indicator for new UI */
+.typing-2J1mQU {
+  background-color: transparent;
+  bottom: var(--chatbar-height);
+}
+
+/* Fixed server list for new UI */
+.wrapper-1_HaEi {
+  width: var(--server-sidebar-width);
+  padding-top: calc(var(--gap) / 2);
+}
+
+/* Fixed channel list for new UI */
+.sidebar-1tnWFu {
+  width: var(--channel-sidebar-width);
+}
+
+/* Improved emoji picker for new UI */
+.emojiPicker-6YCk8a {
+  background-color: var(--bg-3);
+  border-radius: var(--panel-radius);
+}
+
+/* Improved context menu for new UI */
+.menu-2TXYjN {
+  background-color: var(--bg-3);
+  border-radius: var(--panel-radius);
+}
+
+/* Improved mentions for new UI */
+.mentioned-Tre-dv {
+  background-color: var(--mention);
+  border-left: 4px solid var(--accent-3);
+}
+
+.mentioned-Tre-dv:hover {
+  background-color: var(--mention-hover);
+}
+
+/* Fix for modals in new UI */
+.modal-3Hrb0S {
+  background-color: var(--bg-3);
+  border-radius: var(--panel-radius);
+}
+
+/* Fix for tooltips in new UI */
+.tooltip-33Jwqe {
+  background-color: var(--bg-2);
+  border-radius: var(--panel-radius);
+}
+
+/* Fix for popouts in new UI */
+.popout-TdhJ6Z {
+  background-color: var(--bg-3);
+  border-radius: var(--panel-radius);
+}
+
+/* Improved server discovery for new UI */
+.scroller-3j5xK2 {
+  background-color: var(--bg-4);
+}
+
+/* Improved forums view for new UI */
+.container-3QqgMM {
+  background-color: var(--bg-3);
+}
+
+/* Forum post styling */
+.container-3wLKDe {
+  background-color: var(--bg-2);
+  border-radius: var(--panel-radius);
+}
+
+/* Improved thread styling */
+.container-3XgAHv {
+  background-color: var(--bg-3);
+  border-radius: var(--panel-radius);
+}
+
+/* Improved code blocks */
+.markup-eYLPri code {
+  background-color: var(--bg-2);
+  border-radius: 4px;
+}
+
+/* Improved embedded links and attachments */
+.embedWrapper-1MtIDg {
+  border-radius: var(--message-radius);
+  background-color: var(--bg-2);
+}
+
+/* Fix text area background */
+.scrollableContainer-15eg7h {
+  background-color: var(--bg-2);
+  border-radius: var(--button-radius);
+}
+
+/* Fix unread bar to match Night Owl theme */
+.unreadBar-elBRZx {
+  background-color: var(--accent-2);
+}
+
+/* Divider line for unread messages */
+.divider-IqmEqJ {
+  --divider-color: var(--accent-2);
+}
+
+/* Fix for input fields */
+.input-2g-os5 {
+  background-color: var(--bg-2);
+  border-radius: var(--button-radius);
+}
+
+/* Notification badges */
+.numberBadge-37OJ3S {
+  background-color: var(--accent-3) !important;
+}
